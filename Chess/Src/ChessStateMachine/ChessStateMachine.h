@@ -18,7 +18,6 @@ struct ChessContext
     const sf::Color checkBoxColor = sf::Color::Red;
     const sf::Color attackerBoxColor = sf::Color::Magenta;
     const sf::Color noColor = sf::Color::White;
-
 };
 
 enum ChessStateKeys
@@ -29,7 +28,7 @@ enum ChessStateKeys
     CheckMateStateKey,
 };
 
-class ChessStateMachine: public HierarchicalStateMachine<ChessStateKeys>
+class ChessStateMachine: public HierarchicalStateMachine<ChessStateKeys, ChessContext>
 {
 public:
 
@@ -41,6 +40,4 @@ protected:
     void InitStates();
     void InitPlayer();
     void InitBoard();
-
-    ChessContext context;
 };

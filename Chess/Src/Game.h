@@ -21,6 +21,6 @@ protected:
     sf::Clock clock;
     sf::Music music;
 
-    std::unique_ptr<sf::RenderWindow> window;
+    sf::RenderWindow window;
     std::unique_ptr<ChessStateMachine> chessStateMachine;
 };

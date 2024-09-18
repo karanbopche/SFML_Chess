@@ -5,7 +5,7 @@
 #include <SFML/Window.hpp>
 #include "HierarchicalState.h"
 
-template <typename EHierarchicalState>
+template <typename EHierarchicalState, typename Context>
 class HierarchicalStateMachine
 {
 public:
@@ -52,4 +52,5 @@ public:
 protected:
     std::map<EHierarchicalState, std::unique_ptr<HierarchicalState<EHierarchicalState>>> states;
     EHierarchicalState currentState;
+    Context context;
 };

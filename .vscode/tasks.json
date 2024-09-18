@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "cmake --build build --target clean",
+            "command": "cmake --build build --target clean" 
         },
         {
             "label": "build and Run",
@@ -37,7 +37,7 @@
             "command": "${workspaceFolder}\\build\\bin\\Chess.exe",
             "options": {
                 "cwd": "${workspaceFolder}\\build\\bin\\"
-            },
+            }
         },
         {
             "label": "test",
