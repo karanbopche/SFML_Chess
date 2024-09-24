@@ -13,8 +13,8 @@ Piece::Piece(const sf::Texture& texture, const sf::Vector2f& size, Player player
 
 sf::Vector2u Piece::GetBoxPosition() const
 {
-    const unsigned int x = (this->targetPosition.x + this->deltaStep)  / this->size.x;
-    const unsigned int y = (this->targetPosition.y + this->deltaStep)  / this->size.y;
+    const unsigned int x = (this->targetPosition.x + this->deltaStep - this->offset.x)  / this->size.x;
+    const unsigned int y = (this->targetPosition.y + this->deltaStep - this->offset.y)  / this->size.y;
     return {x, y};
 }
 

@@ -32,17 +32,21 @@ public:
     {
         return this->type;
     }
+    inline void SetOffset(const sf::Vector2f &offset)
+    {
+        this->offset = offset;
+    }
     inline void SetPosition(const sf::Vector2f &position)
     {
         this->targetPosition = position;
     }
     inline void MoveToBox(const sf::Vector2u &boxPosition)
     {
-        this->targetPosition = {boxPosition.x * this->size.x, boxPosition.y * this->size.y};
+        this->targetPosition = {this->offset.x + (boxPosition.x * this->size.x), this->offset.y + (boxPosition.y * this->size.y)};
     }
     inline void SetToBox(sf::Vector2u box)
     {
-        this->targetPosition = {box.x * this->size.x, box.y * size.y};
+        this->targetPosition = {this->offset.x + (box.x * this->size.x), this->offset.y + (box.y * size.y)};
         this->sprite.setPosition(this->targetPosition);
     }
     inline void Draw(sf::RenderWindow *window) const
@@ -76,5 +80,6 @@ protected:
     const sf::Vector2f size;
     const Player player;
     const PieceType type;
+    sf::Vector2f offset;
 };
 
