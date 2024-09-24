@@ -5,8 +5,8 @@ Game::Game()
 {
     this->InitWindow();
     this->InitSound();
-    this->chessStateMachine = std::make_unique<ChessStateMachine>(&this->window);
-    this->chessStateMachine->Start();
+    this->gameStateMachine = std::make_unique<GameStateMachine>(&this->window);
+    this->gameStateMachine->Start();
 }
 
 void Game::InitWindow()
@@ -31,7 +31,7 @@ void Game::EventHandler(sf::Event &event)
     {
         this->window.close();
     }
-    this->chessStateMachine->EventHandler(event);
+    this->gameStateMachine->EventHandler(event);
 }
 
 void Game::Run()
@@ -44,11 +44,11 @@ void Game::Run()
         {
             this->EventHandler(event);
         }
-        this->chessStateMachine->Update();
+        this->gameStateMachine->Update();
         
         this->window.clear();
-        this->chessStateMachine->Draw();
+        this->gameStateMachine->Draw();
         this->window.display();
-        this->chessStateMachine->StateTransition();
+        this->gameStateMachine->StateTransition();
     }
 }

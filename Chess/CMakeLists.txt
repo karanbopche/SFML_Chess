@@ -18,9 +18,9 @@ set(
     Src/ChessStateMachine/States/CheckMateState.cpp
     Src/GameStateMachine/GameStateMachine.cpp
     Src/GameStateMachine/States/ChessState.cpp
-    Src/GameStateMachine/States/GameState.cpp
     Src/GameStateMachine/States/MainMenuState.cpp
     Src/GameStateMachine/States/PauseMenuState.cpp
+    Src/Widgets/Button.cpp
 )
 
 set(

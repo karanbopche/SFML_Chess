@@ -3,7 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <ChessStateMachine/ChessStateMachine.h>
-
+#include <GameStateMachine/GameStateMachine.h>
 
 class Game: sf::NonCopyable
 {
@@ -22,5 +22,5 @@ protected:
     sf::Music music;
 
     sf::RenderWindow window;
-    std::unique_ptr<ChessStateMachine> chessStateMachine;
+    std::unique_ptr<GameStateMachine> gameStateMachine;
 };
