@@ -52,8 +52,8 @@ bool CheckState::CanAvoidAttackByMoving(Piece *piece)
 {
     const auto &pos = piece->GetBoxPosition();
     auto player = piece->GetPlayer();
-    for (unsigned int y = 0; y < this->context.VERTICAL_BOXES; y++)
-        for (unsigned int x = 0; x < this->context.HORIZONTAL_BOXES; x++)
+    for (unsigned int y = 0; y < this->context.ROWS; y++)
+        for (unsigned int x = 0; x < this->context.COLS; x++)
             if (this->IsValidMove(pos, {x, y}, player))
                 return true;
 
@@ -69,8 +69,8 @@ bool CheckState::CanBlockPath(sf::Vector2u from, sf::Vector2u to, Player player)
     delta.x = (0 < delta.x) - (delta.x < 0);
     delta.y = (0 < delta.y) - (delta.y < 0);
 
-    for (unsigned int y = 0; y < this->context.VERTICAL_BOXES; y++)
-        for (unsigned int x = 0; x < this->context.HORIZONTAL_BOXES; x++)
+    for (unsigned int y = 0; y < this->context.ROWS; y++)
+        for (unsigned int x = 0; x < this->context.COLS; x++)
             if (this->context.pieces[y][x])
                 while ((to.x != from.x) || (to.y != from.y))
                 {

@@ -8,17 +8,20 @@ void IdleState::Draw()
 {
 }
 
-void IdleState::EventHandler(sf::Event& event)
+void IdleState::EventHandler(sf::Event &event)
 {
     if (event.type == sf::Event::MouseButtonReleased)
     {
-        const auto mousePosition = sf::Mouse::getPosition(*this->context.window);
-        const auto boxSize = this->context.window->getSize() / this->context.VERTICAL_BOXES;
-        sf::Vector2u selectedBox = {mousePosition.x / boxSize.x, mousePosition.y / boxSize.y};
-        if(this->IsValidSelection(selectedBox))
+        if(this->context.boardRect.contains(event.mouseButton.x, event.mouseButton.y))
         {
-            this->context.selectedPiecePosition = selectedBox;
-            this->SetNextState(ChessStateKeys::PieceSelectedStateKey);
+            sf::Vector2u selectedBox = {
+                static_cast<unsigned int>((event.mouseButton.x - this->context.boardRect.left) / this->context.BoxSize.x),
+                static_cast<unsigned int>((event.mouseButton.y - this->context.boardRect.top) / this->context.BoxSize.y)};
+            if (this->IsValidSelection(selectedBox))
+            {
+                this->context.selectedPiecePosition = selectedBox;
+                this->SetNextState(ChessStateKeys::PieceSelectedStateKey);
+            }
         }
     }
 }
@@ -34,13 +37,13 @@ void IdleState::ExitState()
 bool IdleState::IsValidSelection(const sf::Vector2u &position)
 {
     auto &piece = this->context.pieces[position.y][position.x];
-    
+
     /* no piece selected */
-    if(piece == nullptr)
+    if (piece == nullptr)
         return false;
-    
+
     /* wrong player */
-    if(this->context.currentPlayer != piece->GetPlayer())
+    if (this->context.currentPlayer != piece->GetPlayer())
         return false;
 
     return true;

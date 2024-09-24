@@ -17,8 +17,8 @@ public:
 
 TEST_F(IdleState_Fixture, is_valid_selection_empty_board)
 {
-    for(unsigned int row=0;row<this->context.VERTICAL_BOXES;row++)
-    for(unsigned int col=0;col<this->context.HORIZONTAL_BOXES;col++)
+    for(unsigned int row=0;row<this->context.ROWS;row++)
+    for(unsigned int col=0;col<this->context.COLS;col++)
     {
         ASSERT_EQ(this->IsValidSelection({col, row}), false);
     }

@@ -72,8 +72,8 @@ bool ChessState::isPathBlocked(sf::Vector2u from, sf::Vector2u to)
 
 Piece *ChessState::FindKing(Player player)
 {
-    for (unsigned int y = 0; y < this->context.VERTICAL_BOXES; y++)
-        for (unsigned int x = 0; x < this->context.HORIZONTAL_BOXES; x++)
+    for (unsigned int y = 0; y < this->context.ROWS; y++)
+        for (unsigned int x = 0; x < this->context.COLS; x++)
         {
             auto &piece = this->context.pieces[y][x];
             if (piece && piece->GetPieceType() == PieceType::King && piece->GetPlayer() == player)
@@ -85,8 +85,8 @@ Piece *ChessState::FindKing(Player player)
 std::vector<Piece *> ChessState::GetAttackers(Player attacker, const sf::Vector2u &position)
 {
     std::vector<Piece *> attackers;
-    for (unsigned int y = 0; y < this->context.VERTICAL_BOXES; y++)
-        for (unsigned int x = 0; x < this->context.HORIZONTAL_BOXES; x++)
+    for (unsigned int y = 0; y < this->context.ROWS; y++)
+        for (unsigned int x = 0; x < this->context.COLS; x++)
         {
             auto &piece = this->context.pieces[y][x];
             if (piece && piece->GetPlayer() == attacker && this->IsValidMove(piece->GetBoxPosition(), position, attacker))
