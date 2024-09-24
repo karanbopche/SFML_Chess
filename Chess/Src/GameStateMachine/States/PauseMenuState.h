@@ -1,8 +1,9 @@
 #pragma once
 
-#include "GameState.h"
+#include <StateMachine/HierarchicalState.h>
+#include "../GameStateMachine.h"
 
-class PauseMenuState : public GameState
+class PauseMenuState : public HierarchicalState<GameStateKeys, GameContext>
 {
 public:
     PauseMenuState(GameContext &context);
@@ -11,8 +12,5 @@ public:
     virtual void EventHandler(sf::Event &event) override;
     virtual void Update() override;
     virtual void Draw() override;
-    virtual void SuspendState() override;
-    virtual void WakeUpState() override;
-
 protected:
 };

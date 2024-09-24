@@ -12,7 +12,7 @@ public:
     HierarchicalStateMachine() = default;
     virtual ~HierarchicalStateMachine() = default;
     
-    inline void RegisterState(EHierarchicalState key, std::unique_ptr<HierarchicalState<EHierarchicalState>> state)
+    inline void RegisterState(EHierarchicalState key, std::unique_ptr<HierarchicalState<EHierarchicalState, Context>> state)
     {
         this->states[key] = std::move(state);
     }
@@ -50,7 +50,7 @@ public:
     }
 
 protected:
-    std::map<EHierarchicalState, std::unique_ptr<HierarchicalState<EHierarchicalState>>> states;
+    std::map<EHierarchicalState, std::unique_ptr<HierarchicalState<EHierarchicalState, Context>>> states;
     EHierarchicalState currentState;
     Context context;
 };

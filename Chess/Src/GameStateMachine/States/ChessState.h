@@ -1,9 +1,11 @@
 #pragma once
 
-#include "GameState.h"
+#include <StateMachine/HierarchicalState.h>
+#include "../GameStateMachine.h"
 #include <ChessStateMachine/ChessStateMachine.h>
 
-class ChessState: public GameState
+
+class ChessState: public HierarchicalState<GameStateKeys, GameContext>
 {
 public:
     explicit ChessState(GameContext &context);
@@ -12,9 +14,6 @@ public:
     virtual void EventHandler(sf::Event &event) override;
     virtual void Update() override;
     virtual void Draw() override;
-    virtual void SuspendState() override;
-    virtual void WakeUpState() override;
-
 protected:
-    ChessStateMachine *chessStateMachine;
+    std::unique_ptr<ChessStateMachine> chessStateMachine;
 };

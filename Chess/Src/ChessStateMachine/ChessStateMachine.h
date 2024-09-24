@@ -9,10 +9,12 @@ struct ChessContext
     sf::Vector2u targetPiecePosition;
     Player currentPlayer;
     Piece *pieces[8][8];
-    Piece *captured[4][8];
+    Piece *player1Captured[2][8];
+    Piece *player2Captured[2][8];
     sf::Sprite boardSprites[10][10];
     const unsigned int VERTICAL_BOXES = 8;
     const unsigned int HORIZONTAL_BOXES = 8;
+    const sf::Vector2f BoxSize = {100, 100};
     const sf::Color selectedPieceBoxColor = sf::Color::Green;
     const sf::Color hintBoxColor = sf::Color::Cyan;
     const sf::Color checkBoxColor = sf::Color::Red;

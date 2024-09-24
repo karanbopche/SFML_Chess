@@ -16,5 +16,5 @@ void GameStateMachine::InitStates()
     this->RegisterState(GameStateKeys::ChessStateKey, std::move(std::make_unique<ChessState>(this->context)));
     this->RegisterState(GameStateKeys::PauseMenuStateKey, std::move(std::make_unique<PauseMenuState>(this->context)));
 
-    this->Start(GameStateKeys::MainMenuStateKey);
+    this->currentState = GameStateKeys::MainMenuStateKey;
 }

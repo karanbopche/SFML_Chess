@@ -2,7 +2,7 @@
 
 #include <SFML/Window.hpp>
 
-template <typename EStackedState>
+template <typename EStackedState, typename Context>
 class StackedState
 {
 public:
@@ -13,7 +13,7 @@ public:
         Pop,
         Switch
     };
-    StackedState(EStackedState key) : key(key), nextState(key) {}
+    StackedState(EStackedState key, Context &context) : key(key), context(context), nextState(key), operation(StackOperation::None) {}
 
     inline EStackedState getKey()
     {
@@ -65,8 +65,8 @@ protected:
 
     inline void PopState() { this->operation = StackOperation::Pop; }
 
-private:
     const EStackedState key;
+    Context &context;
     EStackedState nextState;
     StackOperation operation;
 };

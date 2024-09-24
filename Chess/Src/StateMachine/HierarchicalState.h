@@ -2,11 +2,11 @@
 
 #include <SFML/Window.hpp>
 
-template <typename EHierarchicalState>
+template <typename EHierarchicalState,  typename Context>
 class HierarchicalState
 {
 public:
-    HierarchicalState(EHierarchicalState key) : key(key), nextState(key) {}
+    HierarchicalState(EHierarchicalState key, Context &context) : key(key), nextState(key), context(context) {}
     virtual ~HierarchicalState() = default;
     inline EHierarchicalState getKey() { return this->key; }
     inline EHierarchicalState GetNextState(){ return this->nextState; }
@@ -22,4 +22,5 @@ protected:
     inline void SetNextState(const EHierarchicalState state) { this->nextState = state; }
     const EHierarchicalState key;
     EHierarchicalState nextState;
+    Context &context;
 };

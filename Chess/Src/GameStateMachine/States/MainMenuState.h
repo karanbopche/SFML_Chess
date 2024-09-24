@@ -1,8 +1,11 @@
 #pragma once
 
-#include "GameState.h"
+#include <StateMachine/HierarchicalState.h>
+#include "../GameStateMachine.h"
+#include <Widgets/Button.h>
 
-class MainMenuState: public GameState
+
+class MainMenuState: public HierarchicalState<GameStateKeys, GameContext>
 {
 public:
     explicit MainMenuState(GameContext &context);
@@ -11,7 +14,13 @@ public:
     virtual void EventHandler(sf::Event &event) override;
     virtual void Update() override;
     virtual void Draw() override;
-    virtual void SuspendState() override;
-    virtual void WakeUpState() override;
+protected:
+    void InitMenuItems();
+
 private:
+    Button start;
+    Button exit;
+    sf::Text text;
+    sf::CircleShape circle;
+    sf::Sprite backgroundBox[2];
 };

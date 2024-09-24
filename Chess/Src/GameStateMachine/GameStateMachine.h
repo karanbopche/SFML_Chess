@@ -1,6 +1,6 @@
 #pragma once
 
-#include <StateMachine/StackedStateMachine.h>
+#include <StateMachine/HierarchicalStateMachine.h>
 #include <SFML/Graphics.hpp>
 
 enum GameStateKeys
@@ -15,12 +15,11 @@ struct GameContext
     sf::RenderWindow *window;
 };
 
-class GameStateMachine : public StackedStateMachine<GameStateKeys>
+class GameStateMachine : public HierarchicalStateMachine<GameStateKeys, GameContext>
 {
 public:
     explicit GameStateMachine(sf::RenderWindow *window);
 
 protected:
     void InitStates();
-    GameContext context;
 };

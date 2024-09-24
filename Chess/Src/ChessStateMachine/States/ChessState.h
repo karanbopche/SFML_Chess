@@ -2,10 +2,10 @@
 
 #include "../ChessStateMachine.h"
 
-class ChessState : public HierarchicalState<ChessStateKeys>
+class ChessState : public HierarchicalState<ChessStateKeys, ChessContext>
 {
 public:
-    inline ChessState(ChessContext &context, ChessStateKeys key) : HierarchicalState(key), context(context) {}
+    inline ChessState(ChessContext &context, ChessStateKeys key) : HierarchicalState(key, context) {}
     bool IsValidMove(const sf::Vector2u &from, const sf::Vector2u &to, Player player);
     bool isPathBlocked(sf::Vector2u from, sf::Vector2u to);
     inline void SwitchPlayer()
@@ -17,7 +17,4 @@ public:
     }
     Piece *FindKing(Player player);
     std::vector<Piece *> GetAttackers(Player player, const sf::Vector2u &position);
-
-protected:
-    ChessContext &context;
 };
